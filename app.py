@@ -1,12 +1,14 @@
 import os
 from flask import Flask, jsonify
+from dotenv import load_dotenv
 
-# Create Flask instance
+load_dotenv()
+
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    ret = {'messgage': 'Hello'}
+    ret = {'messgage': 'Hello', 'smtp': os.environ.get('MAIL_SMTP')}
 
     return jsonify(ret)
 
