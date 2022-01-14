@@ -22,8 +22,8 @@ def send():
     mail_to = [req['to']]
 
     msg = f"""From: {mail_from}
-        Sender: {mail_from}
         To: {mail_to[0]}
+        Sender: {mail_from}
         Subject: {req['subject']}
 
         {req['body']}"""
@@ -32,7 +32,7 @@ def send():
         smtp_obj = smtplib.SMTP(os.environ.get('MAIL_SMTP'))
         smtp_obj.sendmail(mail_from, mail_to, msg)
 
-        print(f"Mail sent to {mail_to[0]} using {os.environ.get('MAIL_SMTP')}")
+        print(f"Mail sent from {mail_from} to {mail_to[0]} using {os.environ.get('MAIL_SMTP')}")
         ret = { 'message': 'Mail sent' }
 
     except Exception as e:
