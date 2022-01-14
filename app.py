@@ -15,18 +15,25 @@ def index():
 
 @app.route("/sendmail", methods = [ 'POST' ])
 def send():
+    """ POST send email
+        See https://docs.csc.fi/cloud/rahti/tutorials/email/ for instructions"""
     ret = { 'smtp': os.environ.get('MAIL_SMTP')}
 
     req = request.get_json()
     mail_from = os.environ.get('MAIL_FROM')
     mail_to = [req['to']]
 
+
+    if not mail_to[0].endswith(os.environ.get('ALLOWED_MAILDOMAIN')):
+        """Make sure TO-domain is allowed"""
+        return { 'error': 'Forbidden recipient address' }, 403
+
     msg = "From: {}\r\nTo: {}\r\nSender: {}\r\nSubject: {}\r\n\r\n{}".format(
-            mail_from, 
-            mail_to[0], 
-            mail_from, 
-            req['subject'], 
-            req['body'])
+        mail_from, 
+        mail_to[0], 
+        mail_from, 
+        req['subject'], 
+        req['body'])
 
     try:
         smtp_obj = smtplib.SMTP(os.environ.get('MAIL_SMTP'))
