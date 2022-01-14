@@ -22,6 +22,7 @@ def send():
     mail_to = [req['to']]
 
     msg = f"""From: {mail_from}
+        Sender: {mail_from}
         To: {mail_to[0]}
         Subject: {req['subject']}
 
@@ -35,8 +36,8 @@ def send():
         ret = { 'message': 'Mail sent' }
 
     except Exception as e:
-        ret =  { 'error': 'Mail fail.' }, 500
         print(e)
+        ret =  { 'error': 'Mail fail.' }, 500
     
     return ret
 
