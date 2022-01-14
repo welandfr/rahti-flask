@@ -18,17 +18,20 @@ def send():
     ret = { 'smtp': os.environ.get('MAIL_SMTP')}
 
     req = request.get_json()
+    mail_from = os.environ.get('MAIL_FROM')
+    mail_to = [req['to']]
 
-    msg = f"""From: {os.environ.get('MAIL_FROM')}
-        To: {req['to']}
+    msg = f"""From: {mail_from}
+        To: {mail_to[0]}
         Subject: {req['subject']}
 
         {req['body']}"""
 
     try:
         smtp_obj = smtplib.SMTP(os.environ.get('MAIL_SMTP'))
-        smtp_obj.sendmail(os.environ.get('MAIL_FROM'), [req['to']], msg)
+        smtp_obj.sendmail(mail_from, mail_to, msg)
 
+        print(f"Mail sent to {mail_to[0]} using {os.environ.get('MAIL_SMTP')}")
         ret = { 'message': 'Mail sent' }
 
     except Exception as e:
