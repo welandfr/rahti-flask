@@ -27,12 +27,12 @@ def send():
 
     try:
         smtp_obj = smtplib.SMTP(os.environ.get('MAIL_SMTP'))
-        smtp_obj.sendmail(req['from'], [req['to']], msg)
+        smtp_obj.sendmail(os.environ.get('MAIL_FROM'), [req['to']], msg)
 
         ret = { 'message': 'Mail sent' }
 
     except Exception as e:
-        ret =  { 'error': 'Mail fail.' }
+        ret =  { 'error': 'Mail fail.' }, 500
         print(e)
     
     return ret
