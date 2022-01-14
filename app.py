@@ -21,12 +21,12 @@ def send():
     mail_from = os.environ.get('MAIL_FROM')
     mail_to = [req['to']]
 
-    msg = f"""From: {mail_from}
-        To: {mail_to[0]}
-        Sender: {mail_from}
-        Subject: {req['subject']}
-
-        {req['body']}"""
+    msg = "From: {}\r\nTo: {}\r\nSender: {}\r\nSubject: {}\r\n\r\n{}".format(
+            mail_from, 
+            mail_to[0], 
+            mail_from, 
+            req['subject'], 
+            req['body'])
 
     try:
         smtp_obj = smtplib.SMTP(os.environ.get('MAIL_SMTP'))
