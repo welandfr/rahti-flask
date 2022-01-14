@@ -1,0 +1,14 @@
+@baseUrl=http://127.0.0.1:5000/
+
+GET {{baseUrl}}
+
+###
+
+POST {{baseUrl}}/sendmail
+Content-Type: application/json
+
+{ 
+    "to": "user@server.domain", 
+    "subject": "Subject", 
+    "body": "Body" 
+}
