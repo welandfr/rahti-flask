@@ -1,14 +1,18 @@
-@baseUrl=http://127.0.0.1:5000/
+# For use with the Rest Client VSCode extension (humao.rest-client)
+
+@baseUrl=http://127.0.0.1:5000
 
 GET {{baseUrl}}
 
 ###
 
-POST {{baseUrl}}/sendmail
+GET {{baseUrl}}/test-route
+
+###
+
+POST {{baseUrl}}/test-route
 Content-Type: application/json
 
 { 
-    "to": "user@server.domain", 
-    "subject": "Subject", 
-    "body": "Body" 
+    "testkey": "Test value"
 }

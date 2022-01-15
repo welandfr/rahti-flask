@@ -2,12 +2,7 @@
 
 ## 1. On rahti.csc.fi Openshift Web Console:
 - Create python-project on CSC Rahti (use github repo)
-- Create the following environment variables (Builds/[your app]/Environment):
-```
-    MAIL_SMTP="smtp.pouta.csc.fi:25"
-    MAIL_FROM="from addd" # Must be valid-ish!
-    ALLOWED_MAILDOMAIN="@somedomain.com" # If you want to restrict which domains it can send to
-```
+- Set any environment variables you need, Builds/[your app]/Environment
 - When the first build is complete, find the Webhook url (Builds/[your app]/Configuration)
 
 ## 2. On Github (setup push-to-deploy)
@@ -17,12 +12,7 @@
 ### Note
 - Make sure your default branch is named `master` not `main`.
 - Rahti wants your app to listen on port 8080
+- To run you app over SLL (https) just enable it in you Route (Applications/Routes) by enabling "Secure Route".
+- The `.devcontainer` folder is a VSCode thing, not needed for Rahti. 
 
-## POST /sendmail
-```
-{ 
-    "to": "user@server.domain", 
-    "subject": "Subject", 
-    "body": "Body" 
-}
 
