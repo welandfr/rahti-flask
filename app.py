@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    ret = {'msg': 'Rahti Flask demo works.', 'dotenv': os.environ.get('ENV_VAR') }
+    ret = {'msg': 'Rahti Flask demo works.', 'env_var': os.environ.get('ENV_VAR') }
 
     return ret
 
