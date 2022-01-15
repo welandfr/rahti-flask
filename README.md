@@ -6,8 +6,8 @@
 - When the first build is complete, find the Webhook url (_Builds/ [your app]/ Configuration_)
 
 ## 2. On Github (setup push-to-deploy)
-- Copy-paste the GitHub Webhook URL from Rahti to _GitHub/ Settings/ Webhooks/ New Webhook_. 
-- Set Webhook Content type to application/json
+- Copy-paste the GitHub Webhook URL from Rahti to the GitHub-repo: _Settings/ Webhooks/ New Webhook_. 
+- Set Webhook Content type to _application/json_
 
 ### Note
 - Make sure your default branch is named `master` not `main`.
